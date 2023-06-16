@@ -2,7 +2,7 @@
 /**
  *main - Entry point
  *Description: 'printing alphabets lower case and upper case'
- *Return: Always 0
+ *Return: Success 0
  */
 int main(void)
 {
