@@ -1,44 +1,28 @@
-#include <stdio.h>
+#include "main.h"
 #include <stdlib.h>
 
 /**
- * ssize_t read_textfile - This is the main function, which takes two parameters: filename and letters
- * FILE *fopen - function is a standard C library function used to open files
- *
+ * read_textfile- it will read text file to  print to STDOUT.
+ * @filename:which is the  text file being read.
+ * @letters: number of letters to be read.
+ * Return:the w- actual no.of bytes read and printed.
+ *        0 when function fails.
  */
+ssize_t read_textfile(const char *filename, size_t letters)
+{
+	char *buf;
+	ssize_t fd;
+	ssize_t w;
+	ssize_t t;
 
-ssize_t read_textfile(const char *filename, size_t letters) {
-if (filename == NULL) {
-return 0;
-}
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+		return (0);
+	buf = malloc(sizeof(char) * letters);
+	t = read(fd, buf, letters);
+	w = write(STDOUT_FILENO, buf, t);
 
-FILE *file = fopen(filename, "r");
-if (file == NULL) {
-return 0;
-}
-
-char *buffer = (char *)malloc(letters + 1);
-if (buffer == NULL) {
-fclose(file);
-return 0;
-}
-
-ssize_t bytesRead = fread(buffer, sizeof(char), letters, file);
-fclose(file);
-
-if (bytesRead <= 0) {
-free(buffer);
-return 0;
-}
-
-buffer[bytesRead] = '\0';
-
-ssize_t bytesWritten = fwrite(buffer, sizeof(char), bytesRead, stdout);
-free(buffer);
-
-if (bytesWritten != bytesRead) {
-return 0;
-}
-
-return bytesWritten;
+	free(buf);
+	close(fd);
+	return (w);
 }
