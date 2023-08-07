@@ -2,12 +2,11 @@
 
 /**
  * create_file - that is just to create a file.
+ * @filename:  points the file
  * @text_content: is pointer to a string and  write on the file.
- *
  * Return: in case the function fails - -1.
  *         if not - 1.
  */
-
 int create_file(const char *filename, char *text_content)
 {
 	int fd, w, len = 0;
