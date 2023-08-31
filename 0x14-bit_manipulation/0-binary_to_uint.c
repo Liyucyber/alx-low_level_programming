@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * binary_to_uint - this is used to conversion of a binary number to unsigned int
+ * binary_to_uint - this is used to convert a binary number to unsigned int
  * @b:this is the string that contains the binary number
  *
  * Return: returns the converted binary number to decimal converted.
@@ -21,5 +21,5 @@ unsigned int binary_to_uint(const char *b)
 		dec_val = 2 * dec_val + (b[i] - '0');
 	}
 
-	return (dec_val);
+return (dec_val);
 }
