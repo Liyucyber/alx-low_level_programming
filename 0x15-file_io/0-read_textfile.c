@@ -1,28 +1,23 @@
-#include "main.h"
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include "main.h"
 /**
- * read_textfile- to Read the text file print to STDOUT.
- * @filename:the text file that is being read
- * @letters:the  number of the letters to read
- * Return: w-the number of bytes read and printed
- *        0 when the function fails or filename is NULL.
+ * main - checking the code
+ *
+ * return: always 0.
  */
-ssize_t read_textfile(const char *filename, size_t letters)
+int main(int ac, char **av)
 {
-	char *buf;
-	ssize_t fd;
-	ssize_t w;
-	ssize_t t;
+	ssize_t n;
 
-	fd = open(filename, O_RDONLY);
-	if (fd == -1)
-		return (0);
-	buf = malloc(sizeof(char) * letters);
-	t = read(fd, buf, letters);
-	w = write(STDOUT_FILENO, buf, t);
-
-	free(buf);
-	close(fd);
-	return (w);
+	if (ac != 2)
+	{
+		dprintf(2, "usage: %s filename\n", av[0]);
+		exit(1);
+	}
+	n = read_texfile(av[1], 114);
+	printf("\n(printed chars: %li)\n", n);
+	n = read_textfile(av[1], 1024);
+	printf("\n(printed chars: %li)\n", n);
+	return (0);
 }
